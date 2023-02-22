@@ -46,13 +46,33 @@ def index():
 
 @app.route('/upload', methods=['GET', 'POST'])
 def upload_file():
+    nomi = []
     if request.method == 'POST':
+        for filename in os.listdir(app.config['UPLOAD_FOLDER']):
+            file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                print('Failed to delete %s. Reason: %s' % (file_path, e))
+        for filename in os.listdir(app.config['EDITED_FOLDER']):
+            file_path = os.path.join(app.config['EDITED_FOLDER'], filename)
+            try:
+                if os.path.isfile(file_path) or os.path.islink(file_path):
+                    os.unlink(file_path)
+                elif os.path.isdir(file_path):
+                    shutil.rmtree(file_path)
+            except Exception as e:
+                print('Failed to delete %s. Reason: %s' % (file_path, e))
         file = request.files['file']
         filename = file.filename
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
         #return 'file uploaded successfully'
-        rec.recognition()
+        nomi = rec.recognition()
+        print(nomi)
         return filename
         #return redirect(url_for('index'))
     #return render_template('index.html', cards=cards)

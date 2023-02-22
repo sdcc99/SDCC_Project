@@ -154,7 +154,7 @@ $(document).ready(function() {
       console.log(data)
       var images = data.split(',');
       for(var i = 0; i < images.length; i++) {
-        $('#image-container').append('<div class="col-sm card"> <img src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
+        $('#image-container').append('<div class="col-sm " style="width: 40rem"> <img class="card-img-top" src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
       }}
       
     });
