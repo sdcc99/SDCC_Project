@@ -101,14 +101,18 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-        <div class="col">
-        
-          <!------
-          <div id="image-container"></div>-->
+        <div >  <!--class="col"-->
 
-          {% for card in cards %}
+          <div id="image-container" class="card" style="width: 18rem;">
+            
+            <div class="card-body">
+                <button> Condivido </button>
+            </div>
+          </div>
+
+          <!--{% for card in cards %}
             {{ card|safe }}
-          {% endfor %}
+          {% endfor %}-->
 
 
 
@@ -148,8 +152,8 @@ $(document).ready(function() {
     $.get('/images', function(data) {
       // Aggiungi le immagini al contenuto dell'elemento "image-container"
       var images = data.split(',');
-      for (var i = 0; i < images.length; i++) {
-        $('#image-container').append('<img src="' + images[i] + '">');
+      for(var i = 0; i < images.length; i++) {
+        $('#image-container').append('<div class="col"> <img src="static/uploads/' + images[i] + '" class="card-img-top"> </div>')
       }
     });
   }
