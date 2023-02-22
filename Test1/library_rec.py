@@ -52,7 +52,7 @@ def recognition():
 
 
     #cv2.imshow("Result", image)
-    percorso = "static/uploads/imageP2.png"
+    percorso = "static/edited/imageP2.png"
     cv2.imwrite(percorso, image)
     return percorso
     #cv2.waitKey(0)

@@ -103,11 +103,11 @@
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div >  <!--class="col"-->
 
-          <div id="image-container" class="card" style="width: 18rem;">
+          <div id="image-container" class="card" style="width: 20rem;">
             
-            <div class="card-body">
+            <!--<div class="card-body">
                 <button> Condivido </button>
-            </div>
+            </div>-->
           </div>
 
           <!--{% for card in cards %}
@@ -150,11 +150,14 @@ $(document).ready(function() {
   // Funzione per ottenere la lista di immagini caricate
   function getImages() {
     $.get('/images', function(data) {
-      // Aggiungi le immagini al contenuto dell'elemento "image-container"
-      var images = data.split(',');
-      for(var i = 0; i < images.length; i++) {
-        $('#image-container').append('<div class="col"> <img src="static/uploads/' + images[i] + '" class="card-img-top"> </div>')
+      if(data != '') {
+        // Aggiungi le immagini al contenuto dell'elemento "image-container"
+        var images = data.split(',');
+        for(var i = 0; i < images.length; i++) {
+          $('#image-container').append('<div class="col"> <img src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
+        }
       }
+      
     });
   }
 
