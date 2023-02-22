@@ -66,6 +66,11 @@ def recognition():
             #print(percorso)
             cv2.imwrite(percorso, image)
     #print(nomi)
+    with open('abc.txt', 'w') as temp_file:
+        for item in nomi:
+                temp_file.write("%s," % item)
+    # file = open('abc.txt', 'r')
+    # print(file.read())
     return nomi
     #cv2.waitKey(0)
     #cv2.destroyAllWindows()

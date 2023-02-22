@@ -72,7 +72,7 @@ def upload_file():
         
         #return 'file uploaded successfully'
         nomi = rec.recognition()
-        print(nomi)
+        #print(nomi)
         return filename
         #return redirect(url_for('index'))
     #return render_template('index.html', cards=cards)
@@ -87,6 +87,15 @@ def images():
     images = [f for f in files if f.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
     #print(','.join(images))
     return ','.join(images)
+
+@app.route('/names')
+def names():
+    nomi = []
+    nomi = open("abc.txt", "r").read().split(',')
+
+    print(nomi)
+
+    return nomi
 
 
 if __name__ == '__main__':
