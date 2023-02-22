@@ -154,15 +154,29 @@ $(document).ready(function() {
       console.log(data)
       var images = data.split(',');
       for(var i = 0; i < images.length; i++) {
-        $('#image-container').append('<div class="col-sm " style="width: 40rem"> <img class="card-img-top" src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
+        $('#image-container').append('<div class="col " style="width: 40rem"> <img class="card-img-top" src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
+        
       }}
-      
+      //$('#image-container').append('<div class="col-sm " > Nella foto compaiono: <ul><li></li></ul></div>')
+
     });
   }
+  // function getnames() {
+  //   $.get('/images', function(data) {
+  //     if (data != ''){// Aggiungi le immagini al contenuto dell'elemento "image-container"
+  //     console.log(data)
+  //     var images = data.split(',');
+  //     for(var i = 0; i < images.length; i++) {
+  //       $('#image-container').append('<div class="col " style="width: 40rem"> <img class="card-img-top" src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
+        
+  //     }}
+  //     //$('#image-container').append('<div class="col-sm " > Nella foto compaiono: <ul><li></li></ul></div>')
 
+  //   });
+  // }
   // Aggiorna la lista di immagini quando la pagina viene caricata
   getImages();
-
+  getnames();
   // Aggiorna la lista di immagini quando una nuova immagine viene caricata
   $('form').submit(function(e) {
     e.preventDefault();
@@ -177,7 +191,7 @@ $(document).ready(function() {
       success: function(filename) {
         $('#image-container').append('<img src="' + filename + '">');
         getImages();
-        uploadComplete();
+        //uploadComplete();
       }
     });
   });
