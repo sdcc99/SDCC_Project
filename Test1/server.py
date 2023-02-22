@@ -19,7 +19,6 @@ import os
 import library_rec as rec
 
 app = Flask(__name__, static_url_path='/static')
-
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['EDITED_FOLDER'] = 'static/edited'
 

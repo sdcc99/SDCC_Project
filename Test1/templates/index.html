@@ -151,9 +151,10 @@ $(document).ready(function() {
   function getImages() {
     $.get('/images', function(data) {
       if (data != ''){// Aggiungi le immagini al contenuto dell'elemento "image-container"
+      console.log(data)
       var images = data.split(',');
       for(var i = 0; i < images.length; i++) {
-        $('#image-container').append('<div class="col-sm card"> <img src="static/uploads/' + images[i] + '" class="card-img-top"> </div>')
+        $('#image-container').append('<div class="col-sm card"> <img src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
       }}
       
     });
