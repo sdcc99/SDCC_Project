@@ -14,7 +14,7 @@
 # if __name__ == '__main__':
 #   app.run(debug=True)
 
-from flask import Flask, request, render_template, send_file, redirect, url_for, jsonify
+from flask import Flask, request, render_template, send_file, redirect, url_for
 import os
 import library_rec as rec
 import sendemail
@@ -22,9 +22,6 @@ import sendemail
 app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 app.config['EDITED_FOLDER'] = 'static/edited'
-
-# VARIABILE AMBIENTE PER I NOMI
-app.config['NOMI'] = []
 
 @app.route('/')
 def index():
@@ -78,7 +75,7 @@ def upload_file():
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         
         #return 'file uploaded successfully'
-        app.config['NOMI'] = rec.recognition()
+        nomi = rec.recognition()
         #print(nomi)
         return filename
         #return redirect(url_for('index'))
@@ -90,13 +87,10 @@ def uploaded_file(filename):
 
 @app.route('/images')
 def images():
-    nomi = []
     files = os.listdir(app.config['EDITED_FOLDER'])
     images = [f for f in files if f.endswith(('.jpg', '.jpeg', '.png', '.gif'))]
     #print(','.join(images))
-    immagini = ','.join(images)
-    nomi = list(app.config['NOMI'])
-    return jsonify({'immagini': immagini, 'nomi': nomi})
+    return ','.join(images)
 
 @app.route('/names')
 def names():
@@ -111,7 +105,8 @@ def names():
 def send_email():
     if request.method == 'POST':
         sendemail.send("helo")
-        return 0
+
+        return "helo"
         #return redirect(url_for('index'))
     #return render_template('index.html', cards=cards)
 

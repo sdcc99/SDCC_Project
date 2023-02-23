@@ -111,7 +111,8 @@ def names():
 def send_email():
     if request.method == 'POST':
         sendemail.send("helo")
-        return 0
+
+        return "helo"
         #return redirect(url_for('index'))
     #return render_template('index.html', cards=cards)
 

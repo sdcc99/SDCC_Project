@@ -132,9 +132,6 @@
             </div>
           </div>-->
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 " id="name">
-
-        </div>
       </div>
     </div>
   </div>
@@ -154,7 +151,7 @@ $(document).ready(function() {
   function getImages() {
     $.get('/images', function(data) {
       if (data != ''){// Aggiungi le immagini al contenuto dell'elemento "image-container"
-      console.log(data.nomi[1])
+      console.log(data.nomi.length)
       var images = data.immagini.split(',');
       for(var i = 0; i < images.length; i++) {
         $('#image-container').append('<div class="col " style="width: 40rem"> <img class="card-img-top" src="static/edited/' + images[i] + '" class="card-img-top"> </div>')

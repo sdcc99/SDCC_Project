@@ -96,7 +96,7 @@ def images():
     #print(','.join(images))
     immagini = ','.join(images)
     nomi = list(app.config['NOMI'])
-    return jsonify({'immagini': immagini, 'nomi': nomi})
+    return ','.join(images)
 
 @app.route('/names')
 def names():
@@ -111,7 +111,8 @@ def names():
 def send_email():
     if request.method == 'POST':
         sendemail.send("helo")
-        return 0
+
+        return "helo"
         #return redirect(url_for('index'))
     #return render_template('index.html', cards=cards)
 

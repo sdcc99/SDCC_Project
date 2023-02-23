@@ -132,9 +132,6 @@
             </div>
           </div>-->
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 " id="name">
-
-        </div>
       </div>
     </div>
   </div>
@@ -154,12 +151,12 @@ $(document).ready(function() {
   function getImages() {
     $.get('/images', function(data) {
       if (data != ''){// Aggiungi le immagini al contenuto dell'elemento "image-container"
-      console.log(data.nomi[1])
+      console.log(data)
       var images = data.immagini.split(',');
       for(var i = 0; i < images.length; i++) {
         $('#image-container').append('<div class="col " style="width: 40rem"> <img class="card-img-top" src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
       }}
-      for(var i = 0; i < data.nomi.length; i++) {
+      for(var i = 0; i < data.nomi.length && data.nomi[i] != ''; i++) {
           $('#name').append('<li class="list-group-item">'+ data.nomi[i] +'<form style="float-right; margin-top: -25px" class="form-inline" method="POST" action="/sendemail" enctype="multipart/form-data"><button type = "submit" class = "btn btn-primary" style = "float:right">send a fucking email</button></form></li>')
           //<button style = "float:right">send a fucking email</button>
           // <input type="submit" value="send a fucking email">

@@ -14,7 +14,7 @@ def send(emailto):
     msg = EmailMessage()
     msg['Subject'] = "Email subject"
     msg['From'] = email_address
-    msg['To'] = email_address
+    msg['To'] = emailto
     msg.set_content(emailto)
 
     # send email
