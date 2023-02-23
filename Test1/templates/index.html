@@ -159,6 +159,7 @@ $(document).ready(function() {
       for(var i = 0; i < images.length; i++) {
         $('#image-container').append('<div class="col " style="width: 40rem"> <img class="card-img-top" src="static/edited/' + images[i] + '" class="card-img-top"> </div>')
       }}
+      $('#image-container').append('<div class="col-sm " > Nella foto compaiono: <ul style="margin-top:10px" class="list-group" id="name"></ul></div>')
       for(var i = 0; i < data.nomi.length; i++) {
           $('#name').append('<li class="list-group-item">'+ data.nomi[i] +'<form style="float-right; margin-top: -25px" class="form-inline" method="POST" action="/sendemail" enctype="multipart/form-data"><button type = "submit" class = "btn btn-primary" style = "float:right">send a fucking email</button></form></li>')
           //<button style = "float:right">send a fucking email</button>
