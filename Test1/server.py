@@ -17,6 +17,7 @@
 from flask import Flask, request, render_template, send_file, redirect, url_for
 import os
 import library_rec as rec
+import sendemail
 
 app = Flask(__name__, static_url_path='/static')
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
@@ -48,6 +49,7 @@ def index():
 def upload_file():
     nomi = []
     if request.method == 'POST':
+        #ciclo per eliminare tutto ciò che è contenuto nella cartella UPLOAD
         for filename in os.listdir(app.config['UPLOAD_FOLDER']):
             file_path = os.path.join(app.config['UPLOAD_FOLDER'], filename)
             try:
@@ -56,7 +58,9 @@ def upload_file():
                 elif os.path.isdir(file_path):
                     shutil.rmtree(file_path)
             except Exception as e:
-                print('Failed to delete %s. Reason: %s' % (file_path, e))
+                print('Failed to delete %s. Reason: %s' % (file_path, e))       
+
+        #ciclo per eliminare tutto ciò che è contenuto nella cartella EDITED
         for filename in os.listdir(app.config['EDITED_FOLDER']):
             file_path = os.path.join(app.config['EDITED_FOLDER'], filename)
             try:
@@ -97,6 +101,14 @@ def names():
 
     return nomi
 
+@app.route('/sendemail', methods=['GET', 'POST'])
+def send_email():
+    if request.method == 'POST':
+        sendemail.send("helo")
+
+        return "helo"
+        #return redirect(url_for('index'))
+    #return render_template('index.html', cards=cards)
 
 if __name__ == '__main__':
     app.run(debug=True)
