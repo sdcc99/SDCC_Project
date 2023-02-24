@@ -1,5 +1,1 @@
-<<<<<<< HEAD
-Nicola,Daniele,Francesco,Dom,Veri,Totto,Mattia,Luca,
-=======
-Veri,Dom,Daniele,Totto,
->>>>>>> 2b8d3d25d18de6aee2e19ab5163c26b7feba7e1d
+Luca,
