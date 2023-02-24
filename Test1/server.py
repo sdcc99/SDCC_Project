@@ -107,13 +107,15 @@ def names():
 
     return nomi
 
-@app.route('/sendemail', methods=['GET', 'POST'])
-def send_email():
+@app.route('/sendemail/<nome>', methods=['GET', 'POST'])
+def send_email(nome):
+    #print(nome)
     if request.method == 'POST':
-        sendemail.send("helo")
+        sendemail.send("Come procede la giornata?", nome)
+        return redirect("/")
         #return 0
         #return redirect(url_for('index'))
-    return render_template('index.html')
+    return redirect("/")
 
 if __name__ == '__main__':
     app.run(debug=True)
