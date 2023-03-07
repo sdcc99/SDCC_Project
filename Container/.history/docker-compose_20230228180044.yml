@@ -1,0 +1,34 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - my-network
+  app:
+    build: ./app
+    depends_on:
+      - rabbitmq
+    ports:
+      - "8080:5000"
+    networks:
+      - my-network
+  face_rec:
+    build: ./face_rec
+    depends_on:
+      - rabbitmq
+      - app
+    networks:
+      - my-network
+  mail:
+    build: ./mail
+    depends_on:
+      - rabbitmq
+      - app
+      - face_rec
+    networks:
+      - my-network
+networks:
+  my-network:

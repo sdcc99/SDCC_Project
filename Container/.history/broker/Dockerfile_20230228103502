@@ -1,0 +1,26 @@
+FROM python:3.9-slim-buster
+
+RUN apt-get update 
+RUN apt-get -y install sudo
+
+RUN sudo apt-get install erlang
+RUN apt-get install rabbitmq-server
+RUN systemctl enable rabbitmq-server
+RUN systemctl start rabbitmq-server
+RUN rabbitmq-plugins enable rabbitmq_management
+
+##user is the username and password is the new password
+RUN rabbitmqctl add_user admin admin
+##giving that user adiministraitve rights
+RUN rabbitmqctl set_user_tags admin administrator
+RUN sudo rabbitmqctl set_permissions -p / user "." "." "."
+
+WORKDIR /broker
+
+COPY requirements.txt .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD echo "Start"

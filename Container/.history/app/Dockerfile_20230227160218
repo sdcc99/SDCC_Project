@@ -1,0 +1,13 @@
+FROM python:3.9-slim-buster
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install Jinja2==3.0.3
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD echo "This is a test." | wc -
+#CMD [ "python", "server.py" ]

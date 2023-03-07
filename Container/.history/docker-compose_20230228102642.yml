@@ -1,0 +1,22 @@
+version: '3'
+services:
+  app:
+    build: ./app
+    ports:
+      - "6000:5000"
+    networks:
+      - my-network
+  face_rec:
+    build: ./face_rec
+    networks:
+      - my-network
+  mail:
+    build: ./mail
+    networks:
+      - my-network
+  broker:
+    build: ./broker
+    networks:
+      - my-network
+networks:
+  my-network:

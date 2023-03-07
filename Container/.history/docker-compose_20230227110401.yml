@@ -1,0 +1,18 @@
+version: '3'
+services:
+  app:
+    build: ./app
+    ports:
+      - "5000:5000"
+    networks:
+      - my-network
+  face_recognition:
+    build: ./face_recognition
+    networks:
+      - my-network
+  mail:
+    build: ./mail
+    networks:
+      - my-network
+networks:
+  my-network:

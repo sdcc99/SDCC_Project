@@ -1,0 +1,17 @@
+FROM python:3.9-slim-buster
+
+WORKDIR /face_rec
+
+COPY requirements.txt .
+
+
+
+RUN apt-get update && apt-get install -y g++
+RUN apt-get update && apt-get install -y cmake
+RUN apt-get remove libpng16-16
+RUN apt-get update && apt-get install -y libpng16-16=1.6.37-3
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD [ "python", "library_rec.py" ]

@@ -1,0 +1,12 @@
+FROM python:3.9-slim-buster
+
+WORKDIR /face_rec
+
+COPY requirements.txt .
+
+RUN apt-get update && apt-get install -y cmake
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+CMD [ "python", "library_rec.py" ]
